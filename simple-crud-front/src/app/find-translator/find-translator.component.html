@@ -1,0 +1,111 @@
+<div class="row">
+  <div class="row">
+  </div>
+  <div class="col s3">
+    <div class="col s12">
+      <input id="first_name" type="text" class="validate" name="firstName" [ngModel]="translator.firstName"
+             (ngModelChange)="translator.firstName = $event">
+      <label for="first_name">First Name</label>
+    </div>
+    <div class="col s12">
+      <input id="last_name" type="text" class="validate" name="lastName" [ngModel]="translator.lastName"
+             (ngModelChange)="translator.lastName = $event">
+      <label for="last_name">Last Name</label>
+    </div>
+    <div class="col s12">
+      <input id="email_inline" type="email" class="validate" name="email" [ngModel]="translator.email"
+             (ngModelChange)="translator.email = $event">
+      <label for="email_inline">Email</label>
+    </div>
+    <div class="col s12">
+      <input id="source_language" type="text" class="validate" name="sourceLang" [ngModel]="translator.sourceLanguage"
+             (ngModelChange)="translator.sourceLanguage = $event">
+      <label for="last_name">Source Language</label>
+    </div>
+    <div class="col s12">
+      <input id="target_language" type="text" class="validate" name="targetLang" [ngModel]="translator.targetLanguage"
+             (ngModelChange)="translator.targetLanguage = $event">
+      <label for="last_name">Target Language</label>
+    </div>
+    <div class="row"></div>
+    <div class="col s12">
+      <div class="col s4">
+        <button (click)="createTranslator()" class="btn waves-effect" type="submit" name="action">Create
+          <i class="material-icons right">send</i>
+        </button>
+      </div>
+
+      <div class="col s4">
+        <button (click)="updateTranslator()" style="background-color: #feb14a" class="btn waves-effect" type="submit"
+                name="action">
+          Update
+          <i class="material-icons right">send</i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="col s9" >
+    <div class="col s12" style="-moz-box-shadow:    3px 3px 5px 6px #ccc;
+  -webkit-box-shadow: 3px 3px 5px 6px #ccc;
+  box-shadow:         3px 3px 5px 6px #ccc;">
+
+    <div class="col s12 centered">
+      <ul class="pagination centered">
+        <li class="waves-effect"><i (click)="getTranslatorPreviousPage()" class="material-icons">chevron_left</i></li>
+        <li class="waves-effect"  *ngFor="let page of incrementation">
+          <a class="mat-small" (click)="getSpecificPage(page)" style="" >{{page}}</a>
+        </li>
+        <li class="waves-effect"><i (click)="getTranslatorNextPage()" class="material-icons">chevron_right</i></li>
+
+      </ul>
+      <ul>
+        <li>
+          <input id="email_inline_s" type="email" class="validate" name="email" [ngModel]="translatorToSearch.email"
+                 (ngModelChange)="translatorToSearch.email = $event">
+          <label for="email_inline">Email</label>
+        </li>
+        <p></p>
+        <li>
+          <button (click)="getTranslatorByEmail()"  style="background-color: #5389fe" class="btn waves-effect waves-light "
+                  type="submit" name="action">SEARCH
+            <i class="material-icons right">send</i>
+          </button>
+        </li>
+
+      </ul>
+    </div>
+
+    <table>
+      <thead>
+      <tr>
+        <th>Name</th>
+        <th>Last Name</th>
+        <th>e-mail</th>
+        <th>Source Language</th>
+        <th>Target Language</th>
+      </tr>
+      <tr mdbTableCol *ngFor="let el of paginator.list">
+
+        <td>{{el.firstName}}</td>
+        <td>{{el.lastName}}</td>
+        <td>{{el.email}}</td>
+        <td>{{el.sourceLanguage}}</td>
+        <td>{{el.targetLanguage}}</td>
+        <td><a (click)="edit(el)" class="waves-effect" title="EDIT" style="color: #5389fe"><i
+          class="material-icons">
+          edit
+        </i></a></td>
+        <td><a (click)="deleteTranslator(el)" class="waves-effect " title="DELETE" style="color: red"><i
+          class="material-icons">
+          clear
+        </i></a></td>
+      </tr>
+      </thead>
+    </table>
+  </div>
+  </div>
+</div>
+
+
+
